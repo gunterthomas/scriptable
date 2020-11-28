@@ -6,7 +6,7 @@ class ChristmasWidget
         if (!config.runsInWidget) {
             widget.presentSmall();
         }
-        Script.deployWidget(widget);
+        Script.setWidget(widget);
         Script.complete();
     }
 
@@ -24,7 +24,6 @@ class ChristmasWidget
         let daysLeftTxt = list.addText(daysLeft + " Days");
         daysLeftTxt.textColor = this.decideDisplayColor(daysLeft);
         daysLeftTxt.font = Font.boldSystemFont(24);
-        daysLeftTxt.align = "center"
 
         list.addText("");
 
