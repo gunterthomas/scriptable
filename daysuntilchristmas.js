@@ -30,7 +30,7 @@ class ChristmasWidget
         let treeBottomLine = list.addText("🎄🎄🎄🎄");
         treeBottomLine.font = Font.boldSystemFont(24);
 
-        return list
+        return list;
     }
 
     calculateDaysLeft()
@@ -42,11 +42,10 @@ class ChristmasWidget
 
         // check if we need to use christmas next year
         if (
-            today.getMonth() > christmas.getMonth()
-            || (today.getMonth() === christmas.getMonth() && today.getDay() > christmas.getDay())
+           today.getMonth() === christmas.getMonth() 
+           && today.getDate() > christmas.getDate()
         ) {
-            let nextYear = christmas.getFullYear();
-            nextYear = nextYear + 1;
+            let nextYear = christmas.getFullYear() + 1;
             christmas.setFullYear(nextYear);
         }
 
@@ -54,6 +53,7 @@ class ChristmasWidget
         today = today.getTime();
 
         let convertInDays = 24*3600*1000;
+        
         return parseInt((christmas - today)/convertInDays);
     }
 
