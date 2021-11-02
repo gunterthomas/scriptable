@@ -27,10 +27,59 @@ class ChristmasWidget
 
         list.addText("");
 
-        let treeBottomLine = list.addText("🎄🎄🎄🎄");
+        let treeBottomLine = list.addText(this.calculateAdvent());
         treeBottomLine.font = Font.boldSystemFont(24);
 
         return list;
+    }
+    
+    calculateAdvent()
+    {
+        let today = new Date(Date.now());
+        let christmas = new Date(Date.now());
+        christmas.setMonth(11);
+        christmas.setDate(24);
+      
+        // check if we need to use christmas next year
+        if (
+           today.getMonth() === christmas.getMonth() 
+           && today.getDate() > christmas.getDate()
+        ) {
+            return "🎄🎄🎄🎄";
+        }
+        
+        let advent = christmas;       
+        let christmasDayOfWeek = christmas.getDay();
+        
+        advent.setDate(christmas.getDate() - christmasDayOfWeek);
+        
+        let fourthAdvent = new Date();
+        fourthAdvent.setDate(advent.getDate());
+        fourthAdvent.setMonth(advent.getMonth());
+        fourthAdvent.setFullYear(advent.getFullYear());
+        
+        advent.setDate(fourthAdvent.getDate() - 0);
+        if (today > advent) {
+            return "🕯🕯🕯🕯�";
+        }
+
+        advent.setDate(fourthAdvent.getDate() - 7);
+        if (today > advent) {
+            return "🕯🕯🕯🎄";
+        }
+        
+        advent.setDate(fourthAdvent.getDate() - 14);
+        if (today > advent) {
+            return "🕯🕯🎄🎄";
+        }
+
+
+        advent.setDate(fourthAdvent.getDate() - 21);
+        if (today > advent) {
+            return "🕯🎄🎄🎄";
+        }
+        
+        return "🎄🎄🎄🎄";
     }
 
     calculateDaysLeft()
